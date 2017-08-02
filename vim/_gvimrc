@@ -1,1 +1,5 @@
-" _gvimrc for Windows
+" _gvimrc
+" Author: Mike Hansford
+" Last modified: 2 Aug 2017
+
+colorscheme jellybeans
