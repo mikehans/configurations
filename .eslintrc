@@ -1,0 +1,25 @@
+{
+    "extends": "eslint:recommended",
+    "parserOptions": {
+        "ecmaVersion": 5,
+        "sourceType": "script"
+    },
+    "env": {
+      "browser": true,
+      "commonjs": true,
+      "jquery": true
+    },
+    "rules": {
+        // New rules
+        "semi": "warn",
+        "eqeqeq": "error",
+        "no-alert": "error",
+        "block-scoped-var": "warn",
+        "no-empty": "warn",
+        "no-console": "warn",
+
+        // Over-ride recommended rules
+        "no-debugger": "warn"
+
+    }
+}
