@@ -1,7 +1,7 @@
 {
     "extends": "eslint:recommended",
     "parserOptions": {
-        "ecmaVersion": 5,
+        "ecmaVersion": 6,
         "sourceType": "script"
     },
     "env": {
@@ -11,15 +11,18 @@
     },
     "rules": {
         // New rules
-        "semi": "warn",
         "eqeqeq": "error",
         "no-alert": "error",
         "block-scoped-var": "warn",
         "no-empty": "warn",
         "no-console": "warn",
+        "no-extra-semi": "warn",
 
         // Over-ride recommended rules
-        "no-debugger": "warn"
+        "no-debugger": "warn",
 
+        // Stylistic
+        "semi": "warn",
+        "quotes": ["warn", "single"]
     }
 }
