@@ -1,35 +1,6 @@
 " vimrc for windows
 " Author: Mike Hansford
-" Last edited: 2 August 2017
-behave mswin
-set nocompatible
-set number
-set smarttab
-set incsearch
-set autoindent
-set encoding=utf-8
-set showcmd
-set wildmenu
-set nowrap
-set nobackup
-set noswapfile
-set ignorecase smartcase
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
-set noexpandtab
-set foldmethod=manual
-set foldcolumn=8
-set viminfo='50,f1 "save marks and jumps for 50 files and global marks A-Z
-set path+=** "allow all :find searches to be recursive from current directory - prob. works with other commands too
-
-execute pathogen#infect()
-execute pathogen#helptags()
-
-let mapleader = ","
-" vimrc for windows
-" Author: Mike Hansford
-" Last edited: 3 Aug 2017
+" Last edited: 9 Aug 2017
 behave mswin
 set nocompatible
 set number
@@ -48,7 +19,6 @@ set ignorecase smartcase
 " Tabs set to 2 spaces for current project
 " editorconfig not working due to SOE limitations
 " (Usually 4 and noexpandtab)
-" Goal - make it a command
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -59,6 +29,7 @@ set foldmethod=manual
 set foldcolumn=8
 set viminfo='50,f1 "save marks and jumps for 50 files and global marks A-Z
 set path+=** "allow all :find searches to be recursive from current directory - prob. works with other commands too
+set diffopt+=vertical
 
 execute pathogen#infect()
 execute pathogen#helptags()
@@ -72,12 +43,6 @@ else
 	colorscheme elflord
 endif
 
-set list
-set listchars="" 
-set listchars=tab:→\ 
-set listchars+=trail:• 
-set listchars+=extends:≫
-
 "clear autocommands
 :autocmd!
 
@@ -89,12 +54,6 @@ set listchars+=extends:≫
 
 " change the MatchParen highlight colour to something less offensive
 :highlight MatchParen guifg=yellow guibg=brown ctermfg=yellow ctermbg=brown
-
-" remap hjkl to jkl; (typing home keys)
-"noremap ; l
-"noremap l k
-"noremap k j
-"noremap j h
 
 " Set custom filetypes
 au BufReadPost *.hbs set syntax=html " Handlebars
@@ -118,7 +77,7 @@ inoremap <c-u> <esc>viw<s-u>ea
 nnoremap <leader>ev :tabnew $MYVIMRC<cr>
 
 " Edit global .eslintrc
-nnoremap <leader>el :tabnew $HOME\.eslintrc<CR>
+nnoremap <leader>el :tabnew $HOME\.eslintrc.json<CR>
 
 " Cut copy paste to/from system clipboard
 vnoremap <leader>x "+x
@@ -138,27 +97,38 @@ nnoremap <leader>cd :cd %:p:h
 nnoremap <leader>[ :lnext<CR>
 nnoremap <leader>] :lprevious<CR>
 
-" toggle whitespace - would be better as a toggle function...
-nnoremap <leader>wh :set syntax=whitespace<CR>
-nnoremap <leader>nw :set syntax=on<CR>
-"cmap :white :set syntax=whitespace<CR>
-"cmap :nowhite :set syntax=on<CR>
+" Reload current file
+cnoremap reload e! %
 
-"function! ToggleWhitespace()
-	"if syntax="whitespace"
-		"setlocal syntax="on"
-	"else
-		"setlocal syntax="whitespace"
-	"endif	
-"endfunction	
+" Open current file in new tab
+cnoremap full tabe %
 
 set wildignore+=*/.git/*,*/.hg/*,*.orig,*.*~,*.pdf,*.gif,*.jpg,*jpeg,*.png
 set wildignore+=*.swp
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" toggle whitespace 
+cnoremap white set syntax=whitespace<CR>
+cnoremap nowhite set syntax=on<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Show and hide non-printing chars
+set list
+set listchars="" 
+set listchars=tab:→\ 
+set listchars+=trail:• 
+set listchars+=extends:≫
+
+cnoremap nl set nolist<CR>
+cnoremap sl set list<CR>
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pangloss/vim-javascript
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM Mustache / Handlebars
+let g:mustache_abbreviations = 1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Omni-completion
@@ -169,7 +139,7 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS " for CSS 2.1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_stl_format = "[Syn:(%t)%E{ E:%e W:%w}]"
@@ -181,147 +151,6 @@ let g:syntastic_error_symbol = "&&"
 let g:syntastic_warning_symbol = "??"
 " TODO set ignore files to be anything inside node_modules
 " let g:syntastic_ignore_files = ['\m^/usr/include/', '\m\c\.h$']
-let g:syntastic_javascript_checkers = ['eslint']
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Ctrl-P setup
-let g:ctrlp_cmd = "CtrlPMixed"
-let g:ctrlp_use_caching = 1
-let g:ctrlp_clear_cache_on_exit = 0
-let g:ctrlp_switch_buffer = 'Et'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Airline
-" set statusline=%F%m%r%h%w\ [LEN=%L]
-set laststatus=2
-let g:airline#extensions#syntastic#enabled = 1
-let g:airline_theme='wombat'
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" SplitJoin
-
-nnoremap <leader>sj :SplitjoinJoin<cr>
-nnoremap <leader>ss :SplitjoinSplit<cr>
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" JS libs
-let g:used_javascript_libs = "angularjs,underscore"
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" 5 Aug 2014 Reloads _vimrc on save
-augroup reload_vimrc " {
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END " }
-
-"highlight Cursor guifg=white guibg=black
-"highlight iCursor guifg=white guibg=steelblue
-"set guicursor=n-v-c:block-Cursor
-"set guicursor+=i:ver100-iCursor
-"set guicursor+=n-v-c:blinkon0
-"set guicursor+=i:blinkwait10
-
-:runtime macros/matchit.vim
-:syntax on
-filetype plugin indent on
-
-colorscheme elflord
-
-set guifont=Consolas:h11
-
-"clear autocommands
-:autocmd!
-
-" change the cursorline when entering / leaving Insert mode
-"set cursorline 
-"autocmd BufReadPre  * highlight clear CursorLine
-"autocmd InsertEnter * highlight CursorLine guifg=black guibg=darkgrey ctermfg=black ctermbg=darkgrey
-"autocmd InsertLeave * highlight clear CursorLine 
-
-" change the MatchParen highlight colour to something less offensive
-:highlight MatchParen guifg=yellow guibg=brown ctermfg=yellow ctermbg=brown
-
-" remap hjkl to jkl; (typing home keys)
-"noremap ; l
-"noremap l k
-"noremap k j
-"noremap j h
-
-" Set custom filetypes
-au BufReadPost *.hbs set syntax=html " Handlebars
-
-" Use Ctrl-r to replace selected text
-vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-
-" Use Ctrl-n to switch between absolute line numbers and relative line numbers
-nnoremap <silent><C-n> :set rnu! rnu? <cr>
-
-" Use Ctrl-h to switch search highlighting on and off
-nnoremap <silent><C-h> :set hls! hls? <cr>
-
-" Use // to search for visually selected text - use n to find next
-vnoremap // y/<C-R>"<CR>
-
-" Uppercase current string in insert mode
-inoremap <c-u> <esc>viw<s-u>ea
-
-" Edit VIMRC
-nnoremap <leader>ev :tabnew $MYVIMRC<cr>
-
-" Cut copy paste to/from system clipboard
-vnoremap <leader>x "+x
-vnoremap <leader>y "+y
-nnoremap <leader>p "*p
-
-" NERDTree
-nnoremap <leader>nt :NERDTree
-nnoremap <leader>ntt :NERDTreeToggle
-nnoremap <leader>ntc :NERDTreeClose
-nnoremap <leader>ntf :NERDTreeFind
-
-" Change working directory to path of current file
-nnoremap <leader>cd :cd %:p:h
-
-" toggle whitespace - would be better as a toggle function...
-nnoremap <leader>wh :set syntax=whitespace<CR>
-nnoremap <leader>nw :set syntax=on<CR>
-"cmap :white :set syntax=whitespace<CR>
-"cmap :nowhite :set syntax=on<CR>
-
-"function! ToggleWhitespace()
-	"if syntax="whitespace"
-		"setlocal syntax="on"
-	"else
-		"setlocal syntax="whitespace"
-	"endif	
-"endfunction	
-
-set wildignore+=*/.git/*,*/.hg/*,*.orig,*.*~,*.pdf,*.gif,*.jpg,*jpeg,*.png
-set wildignore+=*.swp
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" pangloss/vim-javascript
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Omni-completion
-autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS " for CSS 2.1 
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_stl_format = "[Syn: (%t)]"
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 1
 let g:syntastic_javascript_checkers = ['eslint']
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
