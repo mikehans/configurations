@@ -1,0 +1,26 @@
+cmd /c vscode --install-extension adambaldwin.vscode-nsp
+cmd /c vscode --install-extension dbaeumer.vscode-eslint
+cmd /c vscode --install-extension dkundel.vscode-npm-source
+cmd /c vscode --install-extension donjayamanne.python
+cmd /c vscode --install-extension DotJoshJohnson.xml
+cmd /c vscode --install-extension eg2.tslint
+cmd /c vscode --install-extension eg2.vscode-npm-script
+cmd /c vscode --install-extension fknop.vscode-npm
+cmd /c vscode --install-extension HookyQR.beautify
+cmd /c vscode --install-extension ms-vscode.csharp
+
+cmd /c vscode --install-extension abusaidm.html-snippets
+cmd /c vscode --install-extension bengreenier.vscode-node-readme
+cmd /c vscode --install-extension donjayamanne.githistory
+cmd /c vscode --install-extension ecmel.vscode-html-css
+cmd /c vscode --install-extension wmaurer.change-case
+cmd /c vscode --install-extension qinjia.view-in-browser
+cmd /c vscode --install-extension christian-kohler.path-intellisense
+cmd /c vscode --install-extension johnpapa.Angular1
+cmd /c vscode --install-extension ms-vscode.PowerShell
+cmd /c vscode --install-extension msjsdiag.debugger-for-chrome
+cmd /c vscode --install-extension vscodevim.vim
+cmd /c vscode --install-extension IBM.output-colorizer
+cmd /c vscode --install-extension deerawan.vscode-jasmine-es5
+cmd /c vscode --install-extension joelday.docthis
+cmd /c vscode --install-extension formulahendry.code-runner
