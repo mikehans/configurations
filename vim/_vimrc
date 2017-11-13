@@ -1,6 +1,6 @@
-" vimrc for windows
+" vimrc for windows 
 " Author: Mike Hansford
-" Last edited: 9 Aug 2017
+" Last edited: 13 Nov 2017
 behave mswin
 set nocompatible
 set number
@@ -39,7 +39,7 @@ let mapleader = ","
 if has("gui_running")
 	colorscheme jellybeans
 	set guifont=Consolas:h11
-else	
+else
 	colorscheme elflord
 endif
 
@@ -47,10 +47,10 @@ endif
 :autocmd!
 
 " change the cursorline when entering / leaving Insert mode
-"set cursorline 
+"set cursorline
 "autocmd BufReadPre  * highlight clear CursorLine
 "autocmd InsertEnter * highlight CursorLine guifg=black guibg=darkgrey ctermfg=black ctermbg=darkgrey
-"autocmd InsertLeave * highlight clear CursorLine 
+"autocmd InsertLeave * highlight clear CursorLine
 
 " change the MatchParen highlight colour to something less offensive
 :highlight MatchParen guifg=yellow guibg=brown ctermfg=yellow ctermbg=brown
@@ -93,7 +93,7 @@ nnoremap <leader>ntf :NERDTreeFind
 " Change working directory to path of current file
 nnoremap <leader>cd :cd %:p:h
 
-" Location list 
+" Location list
 nnoremap <leader>[ :lnext<CR>
 nnoremap <leader>] :lprevious<CR>
 
@@ -107,7 +107,7 @@ set wildignore+=*/.git/*,*/.hg/*,*.orig,*.*~,*.pdf,*.gif,*.jpg,*jpeg,*.png
 set wildignore+=*.swp
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
-" toggle whitespace 
+" toggle whitespace
 cnoremap white set syntax=whitespace<CR>
 cnoremap nowhite set syntax=on<CR>
 
@@ -119,13 +119,18 @@ set listchars=tab:→\
 set listchars+=trail:• 
 set listchars+=extends:≫
 
-cnoremap nl set nolist<CR>
-cnoremap sl set list<CR>
+cnoremap nolist set nolist<CR>
+cnoremap setlist set list<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pangloss/vim-javascript
 let g:javascript_plugin_jsdoc = 1
 let g:javascript_plugin_ngdoc = 1
 
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" JsDoc
+let g:jsdoc_allow_input_prompt = 1
+let g:jsdoc_input_description = 1
+let g:jsdoc_access_descriptions = 1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM Mustache / Handlebars
 let g:mustache_abbreviations = 1
@@ -134,12 +139,12 @@ let g:mustache_abbreviations = 1
 " Omni-completion
 autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
-autocmd FileType css set omnifunc=csscomplete#CompleteCSS " for CSS 2.1 
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS " for CSS 2.1
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
-set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_stl_format = "[Syn:(%t)%E{ E:%e W:%w}]"
@@ -162,8 +167,18 @@ let g:ctrlp_switch_buffer = 'Et'
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Airline
-" set statusline=%F%m%r%h%w\ [LEN=%L]
+"set statusline=%F%m%r%h%w\ [LEN=%L]
 set laststatus=2
+" let g:airline_section_a = ''
+let g:airline_section_b = ''
+" let g:airline_section_c = ''
+" let g:airline_section_gutter = ''
+" let g:airline_section_x = ''
+" let g:airline_section_y = ''
+" let g:airline_section_z = ''
+let g:airline#extensions#default#section_truncate_width = {
+      \ 'b': 10
+      \ }
 let g:airline#extensions#syntastic#enabled = 1
 let g:airline_theme='wombat'
 
@@ -175,9 +190,22 @@ nnoremap <leader>ss :SplitjoinSplit<cr>
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " JS libs
-let g:used_javascript_libs = "angularjs,underscore"
+let g:used_javascript_libs = "angularjs,underscore,jquery,backbone"
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Emmet-vim
+"let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings={
+  \ 'javascript.jsx': {
+  \    'extends': 'jsx',
+  \},
+\}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" JSX
+let g:jsx_ext_required = 0
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 
 " 5 Aug 2014 Reloads _vimrc on save
 augroup reload_vimrc " {
