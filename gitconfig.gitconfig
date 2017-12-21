@@ -1,0 +1,34 @@
+[user]
+	name = Mike Hansford
+	email = mjhansford@gmail.com
+[http]
+	sslVerify = false
+[core]
+	autocrlf = false
+	excludesfile = gitignore_global.txt
+[merge]
+	tool = gvimdiff
+[mergetool "vimdiff"]
+	name = vimdiff 
+	trustExitCode = true
+[mergetool "gvimdiff"]
+	path = C:\\vim\\vim80\\gvim.exe
+[diff]
+	tool = gvimdiff
+[difftool "vimdiff"]
+	name = vimdiff
+	trustExitCode = true
+[difftool "gvimdiff"]
+	path = C:\\vim\\vim80\\gvim.exe
+[push]
+	default = simple
+[alias]
+	st = status
+	br = branch
+	cm = commit
+	co = checkout
+	cob = checkout -b
+	logf = log --stat
+	undo = reset HEAD~1 --mixed
+	amend = commit --amend
+	wip = commit -m "WIP"
