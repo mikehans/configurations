@@ -23,16 +23,21 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-""""""""""""""""""""""""""""""""""""""""""
 
+""""""""""""""""""""""""""""""""""""""""""
+"clear autocommands
+:autocmd!
+""""""""""""""""""""""""""""""""""""""""""
+" folding
 set foldmethod=manual
 set foldcolumn=8
+
+autocmd BufNewFile,BufRead *.json :set foldmethod=syntax
+""""""""""""""""""""""""""""""""""""""""""
+
 set viminfo='50,f1 "save marks and jumps for 50 files and global marks A-Z
 set path+=** "allow all :find searches to be recursive from current directory - prob. works with other commands too
 set diffopt+=vertical
-
-execute pathogen#infect()
-execute pathogen#helptags()
 
 let mapleader = ","
 
@@ -42,9 +47,6 @@ if has("gui_running")
 else
 	colorscheme elflord
 endif
-
-"clear autocommands
-:autocmd!
 
 " change the cursorline when entering / leaving Insert mode
 "set cursorline
@@ -56,7 +58,7 @@ endif
 :highlight MatchParen guifg=yellow guibg=brown ctermfg=yellow ctermbg=brown
 
 " Set custom filetypes
-au BufReadPost *.hbs set syntax=html " Handlebars
+autocmd BufReadPost *.hbs set syntax=html " Handlebars
 
 " Use Ctrl-r to replace selected text
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
@@ -121,6 +123,7 @@ set listchars+=extends:≫
 
 cnoremap nolist set nolist<CR>
 cnoremap setlist set list<CR>
+
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " pangloss/vim-javascript
 let g:javascript_plugin_jsdoc = 1
@@ -130,7 +133,7 @@ let g:javascript_plugin_ngdoc = 1
 " JsDoc
 let g:jsdoc_allow_input_prompt = 1
 let g:jsdoc_input_description = 1
-let g:jsdoc_access_descriptions = 1
+let g:jsdoc_access_descriptions = 0
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VIM Mustache / Handlebars
 let g:mustache_abbreviations = 1
@@ -144,8 +147,8 @@ autocmd FileType css set omnifunc=csscomplete#CompleteCSS " for CSS 2.1
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Syntastic
 "set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
 
 let g:syntastic_stl_format = "[Syn:(%t)%E{ E:%e W:%w}]"
 let g:syntastic_always_populate_loc_list = 1
