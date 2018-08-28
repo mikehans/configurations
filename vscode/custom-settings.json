@@ -1,0 +1,8 @@
+{
+    "editor.mouseWheelZoom": true,
+    "vim.useCtrlKeys": false,
+    "window.zoomLevel": 1,
+    "vim.easymotion": true,
+    "numberedBookmarks.saveBookmarksInProject": true,
+    "editor.minimap.enabled": false
+}
