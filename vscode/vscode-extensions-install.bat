@@ -30,3 +30,14 @@ cmd /c code --install-extension vscodevim.vim
 cmd /c code --install-extension waderyan.gitblame
 cmd /c code --install-extension wcwhitehead.bootstrap-3-snippets
 cmd /c code --install-extension xabikos.JavaScriptSnippets
+
+cmd /c code --install-extension jeremyrajan.webpack
+cmd /c code --install-extension burkeholland.simple-react-snippets
+cmd /c code --install-extension chrmarti.regex
+cmd /c code --install-extension ricard.postcss
+cmd /c code --install-extension christian-kohler.path-intellisense
+cmd /c code --install-extension dasfranck.jellybeans
+cmd /c code --install-extension sidneys1.gitconfig
+cmd /c code --install-extension donjayamanne.githistory
+cmd /c code --install-extension editorconfig.editorconfig
+cmd /c code --install-extension wmaurer.change-case

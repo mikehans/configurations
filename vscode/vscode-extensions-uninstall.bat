@@ -30,3 +30,14 @@ cmd /c code --uninstall-extension vscodevim.vim
 cmd /c code --uninstall-extension waderyan.gitblame
 cmd /c code --uninstall-extension wcwhitehead.bootstrap-3-snippets
 cmd /c code --uninstall-extension xabikos.JavaScriptSnippets
+
+cmd /c code --uninstall-extension jeremyrajan.webpack
+cmd /c code --uninstall-extension burkeholland.simple-react-snippets
+cmd /c code --uninstall-extension chrmarti.regex
+cmd /c code --uninstall-extension ricard.postcss
+cmd /c code --uninstall-extension christian-kohler.path-intellisense
+cmd /c code --uninstall-extension dasfranck.jellybeans
+cmd /c code --uninstall-extension sidneys1.gitconfig
+cmd /c code --uninstall-extension donjayamanne.githistory
+cmd /c code --uninstall-extension editorconfig.editorconfig
+cmd /c code --uninstall-extension wmaurer.change-case
