@@ -11,6 +11,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'mattn/emmet-vim'
 	Plug 'nanotech/jellybeans.vim'
 	Plug 'scrooloose/nerdcommenter'
+	"Currently there's a problem with neovim and nerdtree...
 "	Plug 'scrooloose/nerdtree'
 	Plug 'AndrewRadev/splitjoin.vim'
 	Plug 'tolinwei/vim-airline'
@@ -21,6 +22,18 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'w0rp/ale'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'bling/vim-bufferline'
+	Plug 'SirVer/ultisnips'
+	Plug 'honza/vim-snippets'
+
+	if has('nvim')
+		Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+	else
+		Plug 'Shougo/deoplete.nvim'
+		Plug 'roxma/nvim-yarp'
+		Plug 'roxma/vim-hug-neovim-rpc'
+	endif
+	let g:deoplete#enable_at_startup = 1
+
 call plug#end()
 
 source ~/.vimrc
