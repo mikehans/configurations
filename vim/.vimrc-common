@@ -1,0 +1,210 @@
+" Author: Mike Hansford
+set nocompatible
+set number
+set smarttab
+set incsearch
+set autoindent
+set encoding=utf-8
+set showcmd
+set wildmenu
+set nowrap
+set nobackup
+set noswapfile
+set backspace=indent,eol,start
+set ignorecase smartcase
+
+" Tabs set to 2 spaces for current project
+" editorconfig not working due to SOE limitations
+" (Usually 4 and noexpandtab)
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+
+""""""""""""""""""""""""""""""""""""""""""
+"clear autocommands
+:autocmd!
+""""""""""""""""""""""""""""""""""""""""""
+" folding
+set foldmethod=manual
+set foldcolumn=8
+
+autocmd BufNewFile,BufRead *.json :set foldmethod=syntax
+""""""""""""""""""""""""""""""""""""""""""
+
+set viminfo='50,f1 "save marks and jumps for 50 files and global marks A-Z
+set path+=** "allow all :find searches to be recursive from current directory - prob. works with other commands too
+set diffopt+=vertical
+
+let mapleader = ","
+
+if has("gui_running")
+	colorscheme jellybeans
+	set guifont=Consolas:h11
+else
+  colorscheme jellybeans
+endif
+
+" change the cursorline when entering / leaving Insert mode
+"set cursorline
+"autocmd BufReadPre  * highlight clear CursorLine
+"autocmd InsertEnter * highlight CursorLine guifg=black guibg=darkgrey ctermfg=black ctermbg=darkgrey
+"autocmd InsertLeave * highlight clear CursorLine
+
+" change the MatchParen highlight colour to something less offensive
+:highlight MatchParen guifg=yellow guibg=brown ctermfg=yellow ctermbg=brown
+
+" Set custom filetypes
+autocmd BufReadPost *.hbs set syntax=html " Handlebars
+
+" Use Ctrl-r to replace selected text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+" Use Ctrl-n to switch between absolute line numbers and relative line numbers
+nnoremap <silent><C-n> :set rnu! rnu? <cr>
+
+" Use Ctrl-h to switch search highlighting on and off
+nnoremap <silent><C-h> :set hls! hls? <cr>
+
+" Use // to search for visually selected text - use n to find next
+vnoremap // y/<C-R>"<CR>
+
+" Uppercase current string in insert mode
+inoremap <c-u> <esc>viw<s-u>ea
+
+" Edit VIMRC
+nnoremap <leader>ev :tabnew $MYVIMRC<cr>
+
+" Edit global .eslintrc
+nnoremap <leader>el :tabnew $HOME\.eslintrc.json<CR>
+
+" Cut copy paste to/from system clipboard
+vnoremap <leader>x "+x
+vnoremap <leader>y "+y
+nnoremap <leader>p "*p
+
+" Change working directory to path of current file
+nnoremap <leader>cd :cd %:p:h
+
+" Location list
+nnoremap <leader>[ :lnext<CR>
+nnoremap <leader>] :lprevious<CR>
+
+" Reload current file
+cnoremap reload e! %
+
+" Open current file in new tab
+cnoremap full tabe %
+
+set wildignore+=*/.git/*,*/.hg/*,*.orig,*.*~,*.pdf,*.gif,*.jpg,*jpeg,*.png
+set wildignore+=*.swp
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" toggle whitespace
+cnoremap white set syntax=whitespace<CR>
+cnoremap nowhite set syntax=on<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Show and hide non-printing chars
+set list
+set listchars="" 
+set listchars=tab:→\ 
+set listchars+=trail:• 
+set listchars+=extends:≫
+
+cnoremap nolist set nolist<CR>
+cnoremap setlist set list<CR>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" pangloss/vim-javascript
+let g:javascript_plugin_jsdoc = 1
+let g:javascript_plugin_ngdoc = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" JsDoc
+let g:jsdoc_allow_input_prompt = 1
+let g:jsdoc_input_description = 1
+let g:jsdoc_access_descriptions = 0
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VIM Mustache / Handlebars
+let g:mustache_abbreviations = 1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Omni-completion
+autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType html set omnifunc=htmlcomplete#CompleteTags
+autocmd FileType css set omnifunc=csscomplete#CompleteCSS " for CSS 2.1
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ctrl-P setup
+let g:ctrlp_cmd = "CtrlP"
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_root_markers = ['package.json', 'pom.xml']
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_switch_buffer = 'Et'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Airline
+"set statusline=%F%m%r%h%w\ [LEN=%L]
+set laststatus=2
+" let g:airline_section_a = ''
+let g:airline_section_b = ''
+" let g:airline_section_c = ''
+" let g:airline_section_gutter = ''
+" let g:airline_section_x = ''
+" let g:airline_section_y = ''
+" let g:airline_section_z = ''
+let g:airline#extensions#default#section_truncate_width = {
+      \ 'b': 10
+      \ }
+let g:airline#extensions#syntastic#enabled = 1
+let g:airline_theme='wombat'
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" SplitJoin
+
+nnoremap <leader>sj :SplitjoinJoin<cr>
+nnoremap <leader>ss :SplitjoinSplit<cr>
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" JS libs
+let g:used_javascript_libs = "underscore,jquery,backbone,react"
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Ultisnips
+" g:UltiSnipsExpandTrigger='<Tab>'
+" g:UltiSnipsListSnippets='<c-Tab>'
+let g:UltiSnipsSnippetDirectories=["UltiSnips", "~/.vim/myUltisnips"]
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Emmet-vim
+" Tab will conflict with Ultisnips
+"let g:user_emmet_leader_key='<Tab>'
+let g:user_emmet_settings={
+  \ 'javascript.jsx': {
+  \    'extends': 'jsx',
+  \},
+\}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" JSX
+let g:jsx_ext_required = 0
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+
+" 5 Aug 2014 Reloads _vimrc on save
+augroup reload_vimrc " {
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END " }
+
+"highlight Cursor guifg=white guibg=black
+"highlight iCursor guifg=white guibg=steelblue
+"set guicursor=n-v-c:block-Cursor
+"set guicursor+=i:ver100-iCursor
+"set guicursor+=n-v-c:blinkon0
+"set guicursor+=i:blinkwait10
+
+:runtime macros/matchit.vim
+:syntax on
+filetype plugin indent on
