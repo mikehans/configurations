@@ -22,7 +22,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'w0rp/ale'
 	Plug 'airblade/vim-gitgutter'
 	Plug 'bling/vim-bufferline'
-	Plug 'SirVer/ultisnips'
+	Plug 'sirver/ultisnips'
 	Plug 'honza/vim-snippets'
 
 	if has('nvim')
@@ -36,10 +36,16 @@ call plug#begin('~/.config/nvim/plugged')
 
 call plug#end()
 
-source ~/.vimrc
+"source ~/.vimrc
+source $HOME/.vimrc-common
 
 let g:ale_lint_on_enter = 0
 let g:ale_sign_error = "&&"
 let g:ale_sign_warning = "??"
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsEditSplit="vertical"
 
 let g:airline_theme = 'badwolf'
