@@ -96,6 +96,14 @@ cnoremap reload e! %
 " Open current file in new tab
 cnoremap full tabe %
 
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap { {}<left>
+inoremap [ []<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
 set wildignore+=*/.git/*,*/.hg/*,*.orig,*.*~,*.pdf,*.gif,*.jpg,*jpeg,*.png
 set wildignore+=*.swp
 
