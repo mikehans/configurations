@@ -30,6 +30,7 @@ set foldmethod=manual
 set foldcolumn=8
 
 autocmd BufNewFile,BufRead *.json :set foldmethod=syntax
+autocmd BufRead * normal zR
 """"""""""""""""""""""""""""""""""""""""""
 
 set viminfo='50,f1 "save marks and jumps for 50 files and global marks A-Z
