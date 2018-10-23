@@ -24,6 +24,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'bling/vim-bufferline'
 	Plug 'sirver/ultisnips'
 	Plug 'honza/vim-snippets'
+    Plug 'autozimu/LanguageClient-neovim'
 
 	if has('nvim')
 		Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -46,10 +47,18 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:ale_lint_on_enter = 0
 let g:ale_sign_error = "&&"
 let g:ale_sign_warning = "??"
+let g:ale_open_list = 0
 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
+
+autocmd FileType javascript nnoremap <buffer>
+    \ <leader>ld :call LanguageClient_textDocument_definition()<cr>
+autocmd FileType javascript nnoremap <buffer>
+    \ <leader>lh :call LanguageClient_textDocument_hover()<cr>
+autocmd FileType javascript nnoremap <buffer>
+    \ <leader>lr :call LanguageClient_textDocument_rename()<cr>
 
 let g:airline_theme = 'badwolf'
