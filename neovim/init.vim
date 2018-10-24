@@ -24,7 +24,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'bling/vim-bufferline'
 	Plug 'sirver/ultisnips'
 	Plug 'honza/vim-snippets'
-    Plug 'autozimu/LanguageClient-neovim'
+  Plug 'autozimu/LanguageClient-neovim'
 
 	if has('nvim')
 		Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -40,6 +40,8 @@ call plug#end()
 "source ~/.vimrc
 source $HOME/.vimrc-common
 
+set foldmethod=syntax
+
 let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
@@ -49,7 +51,8 @@ let g:ale_sign_error = "&&"
 let g:ale_sign_warning = "??"
 let g:ale_open_list = 0
 
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsListSnippets='<c-Tab>'
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
