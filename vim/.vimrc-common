@@ -16,9 +16,9 @@ set ignorecase smartcase
 " Tabs set to 2 spaces for current project
 " editorconfig not working due to SOE limitations
 " (Usually 4 and noexpandtab)
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
 set expandtab
 
 """"""""""""""""""""""""""""""""""""""""""
@@ -184,7 +184,8 @@ let g:used_javascript_libs = "underscore,jquery,backbone,react"
 " Ultisnips
 " g:UltiSnipsExpandTrigger='<Tab>'
 " g:UltiSnipsListSnippets='<c-Tab>'
-let g:UltiSnipsSnippetDirectories=["UltiSnips", "~/.vim/myUltisnips"]
+"let g:UltiSnipsSnippetDirectories=["~/MyUltiSnips"]
+let g:UltiSnipsSnippetsDir=["~/.vim/myUltisnips"]
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Emmet-vim
 " Tab will conflict with Ultisnips
