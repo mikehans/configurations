@@ -66,7 +66,9 @@ let g:LanguageClient_autoStop=1
 "let g:LanguageClient_loggingLevel='DEBUG'
 let g:LanguageClient_serverCommands = {
   \  'javascript': ['javascript-typescript-stdio'],
-  \  'javascript.jsx': ['javascript-typescript-stdio']
+  \  'javascript.jsx': ['javascript-typescript-stdio'],
+  \  'css': ['css-languageserver', '--stdio'],
+  \  'html': ['html-languageserver', '--stdio']
   \ }
 
 set completefunc=LanguageClient#complete
