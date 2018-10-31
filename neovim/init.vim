@@ -24,7 +24,10 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'bling/vim-bufferline'
 	Plug 'sirver/ultisnips'
 	Plug 'honza/vim-snippets'
-  Plug 'autozimu/LanguageClient-neovim'
+  Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh'
+    \ }
 
 	if has('nvim')
 		Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -57,6 +60,17 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
+let g:LanguageClient_autoStart=1
+let g:LanguageClient_autoStop=1
+"let g:LanguageClient_devel=1
+"let g:LanguageClient_loggingLevel='DEBUG'
+let g:LanguageClient_serverCommands = {
+  \  'javascript': ['javascript-typescript-stdio'],
+  \  'javascript.jsx': ['javascript-typescript-stdio']
+  \ }
+
+set completefunc=LanguageClient#complete
+
 autocmd FileType javascript nnoremap <buffer>
     \ <leader>ld :call LanguageClient_textDocument_definition()<cr>
 autocmd FileType javascript nnoremap <buffer>
@@ -65,3 +79,5 @@ autocmd FileType javascript nnoremap <buffer>
     \ <leader>lr :call LanguageClient_textDocument_rename()<cr>
 
 let g:airline_theme = 'badwolf'
+
+let g:bufferline_echo = 0
