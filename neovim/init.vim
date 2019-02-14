@@ -1,11 +1,15 @@
 set runtimepath^=~/.vim runtimepath+=/.vim/after
+set runtimepath+=~/.fzf
 let &packpath = &runtimepath
 
 let g:python_host_prog = '/usr/bin/python2'
 let g:python3_host_prog = '/usr/bin/python3'
 
 call plug#begin('~/.config/nvim/plugged')
-	Plug 'ctrlpvim/ctrlp.vim'
+	"Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'}
+  Plug 'junegunn/fzf.vim'
+  Plug 'heavenshell/vim-jsdoc'
 	Plug 'tpope/vim-fugitive'
 	Plug 'Raimondi/delimitMate'
 	Plug 'mattn/emmet-vim'
@@ -24,6 +28,7 @@ call plug#begin('~/.config/nvim/plugged')
 	Plug 'bling/vim-bufferline'
 	Plug 'sirver/ultisnips'
 	Plug 'honza/vim-snippets'
+  Plug 'easymotion/vim-easymotion'
   Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh'

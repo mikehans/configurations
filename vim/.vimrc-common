@@ -66,6 +66,8 @@ nnoremap <silent><C-n> :set rnu! rnu? <cr>
 
 " Use Ctrl-h to switch search highlighting on and off
 nnoremap <silent><C-h> :set hls! hls? <cr>
+" Start vim with hls off
+set nohls
 
 " Use // to search for visually selected text - use n to find next
 vnoremap // y/<C-R>"<CR>
@@ -106,7 +108,7 @@ inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
 
 set wildignore+=*/.git/*,*/.hg/*,*.orig,*.*~,*.pdf,*.gif,*.jpg,*jpeg,*.png
-set wildignore+=*.swp
+set wildignore+=*.swp,*/node_modules/*
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""
 " toggle whitespace
