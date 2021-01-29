@@ -1,57 +1,147 @@
-" vimrc for windows 
-" Author: Mike Hansford
-" Last edited: 13 Nov 2017
-behave mswin
+set nocompatible
+set number
+set smarttab
+set incsearch
+set autoindent
+set encoding=utf-8
+set showcmd
+set wildmenu
+set nowrap
+set nobackup
+set noswapfile
+set backspace=indent,eol,start
+set ignorecase smartcase
+set nohls
 
-source $HOME/.vimrc-common
-
-" Tabs set to 2 spaces for current project
-" editorconfig not working due to SOE limitations
-" (Usually 4 and noexpandtab)
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
 
+let mapleader=","
 
-" NERDTree
+" clear autocommands
+:autocmd!
+
+" folding
+set foldmethod=indent
+set foldcolumn=8
+set foldlevel=99
+
+
+" save marks and jumps for 50 files and global marks A-Z
+set viminfo='50,f1
+
+" allow :find searches to recurse from current dir
+set path+=**
+
+" Use Ctrl-r to replace selected text
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+
+" Use Ctrl-n to switch between relative and absolute line numbers
+nnoremap <silent><C-n> :set rnu! rnu? <cr>
+
+" Use Ctrl-H to switch search highlighting on/off
+nnoremap <silent><C-h> :set hls! hls? <cr>
+
+" Change working directory to path of current file
+nnoremap <silent><leader>cd :cd %:p:h <CR>
+
+set wildignore+=*/.git,*.orig,*.*~,*.pdf,*.gif,*.jpg,*.jpeg,*.png
+set wildignore+=*.swp,*/node_modules/*
+
+" Cut copy paste to/from system clipboard
+vnoremap <leader>x "+x
+vnoremap <leader>y "+y
+nnoremap <leader>p "*p
+
+" Show and hide non-printing characters
+set list 
+set listchars=""
+set listchars=tab:→\
+set listchars+=trail:•
+set listchars+=extends:≫
+" Default off
+set nolist
+
+call plug#begin('~/.vim/plugged')
+  Plug 'tpope/vim-fugitive'
+  Plug 'mattn/emmet-vim'
+  Plug 'scrooloose/nerdcommenter'
+  Plug 'nanotech/jellybeans.vim'
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+  Plug 'mxw/vim-jsx'
+  Plug 'editorconfig/editorconfig-vim'
+  Plug 'easymotion/vim-easymotion'
+  Plug 'pangloss/vim-javascript'
+  Plug 'dense-analysis/ale'
+  Plug 'scrooloose/nerdtree'
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'airblade/vim-gitgutter'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'HerringtonDarkholme/yats.vim'
+  Plug 'Omnisharp/omnisharp-vim'
+call plug#end()
+
+colorscheme jellybeans
+
+filetype plugin indent on
+syntax on
+
+let g:coc_global_extensions = [
+  \ 'coc-json',
+  \ 'coc-prettier',
+  \ 'coc-tsserver',
+  \ 'coc-eslint',
+  \ 'coc-snippets'
+  \]
+
+colorscheme jellybeans
+
+" Omnisharp config
+autocmd FileType cs nmap <silent> :OmniSharpGotoDefinition<CR>
+autocmd FileType cs nnoremap <buffer> <leader>fu :OmniSharpFindUsages<CR>
+autocmd FileType cs nnoremap <buffer> <leader>fi :OmniSharpFindImplementations<CR>
+autocmd FileType cs nnoremap <leader><Space> :OmniSharpGetCodeActions<CR>
+
+autocmd FileType ts nmap <silent> gd :call CocActionSync('jumpDefinition')<CR>
+autocmd FileType html nmap <silent> gd :call CocActionSync('jumpDefinition')<CR>
+
+" ale config
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_lint_on_enter = 1
+let g:ale_sign_error = '&&'
+let g:ale_sign_warning = '??'
+let g:ale_open_list = 0
+
+" NERDTree config
+let g:NERDTreeShowHidden = 1
+let g:NERDTreeStatusLine = []
 nnoremap <leader>nt :NERDTree
 nnoremap <leader>ntt :NERDTreeToggle
 nnoremap <leader>ntc :NERDTreeClose
 nnoremap <leader>ntf :NERDTreeFind
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
+" Airline config
+set laststatus=2
+let g:airline_section_b = ''
+let g:airline#extension#default#section_truncate_width = {
+  \ 'b' : 10
+  \ }
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline_theme = 'badwolf'
 
-let g:syntastic_stl_format = "[Syn:(%t)%E{ E:%e W:%w}]"
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 2
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_error_symbol = "&&"
-let g:syntastic_warning_symbol = "??"
-" TODO set ignore files to be anything inside node_modules
-" let g:syntastic_ignore_files = ['\m^/usr/include/', '\m\c\.h$']
-let g:syntastic_javascript_checkers = ['eslint']
-
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" 5 Aug 2014 Reloads _vimrc on save
-augroup reload_vimrc " {
-    autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
-augroup END " }
-
-" highlight Cursor guifg=white guibg=black
-" highlight iCursor guifg=white guibg=steelblue
-" set guicursor=n-v-c:block-Cursor
-" set guicursor+=i:ver100-iCursor
-" set guicursor+=n-v-c:blinkon0
-" set guicursor+=i:blinkwait10
-
-:runtime macros/matchit.vim
-:syntax on
-filetype plugin indent on
+" use alt+hjkl to move between splits
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
+nnoremap <A-h> <C-w>h
+nnoremap <A-j> <C-w>j
+nnoremap <A-k> <C-w>k
+nnoremap <A-l> <C-w>l
