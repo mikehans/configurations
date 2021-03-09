@@ -58,6 +58,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'vim-airline/vim-airline'
 	Plug 'vim-airline/vim-airline-themes'
 	Plug 'nanotech/jellybeans.vim'
+	Plug 'tpope/vim-surround'
+	Plug 'mattn/emmet-vim'
 	
 	" Syntax
 	Plug 'pangloss/vim-javascript'
@@ -70,6 +72,13 @@ colorscheme jellybeans
 " Airline config
 set laststatus=2
 let g:airline_theme='wombat'
+let g:airline_section_b=''
+
+" NERDTree
+nnoremap <leader>nt :NERDTree
+nnoremap <leader>ntt :NERDTreeToggle
+nnoremap <leader>ntc :NERDTreeClose
+
 
 syntax on
 filetype plugin indent on
