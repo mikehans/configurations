@@ -13,6 +13,7 @@ set noswapfile
 set backspace=indent,eol,start
 set ignorecase smartcase
 set belloff=all
+set splitbelow
 
 set foldmethod=syntax
 set foldcolumn=4
