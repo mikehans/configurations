@@ -1,0 +1,30 @@
+:CocInstall...
+
+
+coc-tsserver
+coc-snippets
+coc-json
+coc-html
+coc-explorer
+coc-omnisharp
+coc-css
+
+
+:CocConfig
+
+{
+  "snippets.ultisnips.pythonPrompt": false,
+  "coc.preferences.formatOnSave": false,
+
+  // explorer
+  "explorer.icon.enableNerdfont":true,
+
+  "typescript.format.semicolons": "insert",
+  "typescript.format.insertSpaceAfterConstructor": true,
+  "typescript.format.insertSpaceAfterCommaDelimiter": true,
+  "typescript.format.insertSpaceAfterSemicolonInForStatements": true,
+  "typescript.format.insertSpaceBeforeFunctionParenthesis": true,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingEmptyBraces": true,
+  "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true
+
+}
