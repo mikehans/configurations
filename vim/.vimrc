@@ -3,7 +3,7 @@ source $HOME/vimconfig/settings.vim
 let mapleader=","
 
 :autocmd!
-autocmd BufRead * normal zR
+autocmd BufEnter * normal zR
 
 source $HOME/vimconfig/keymappings.vim
 
@@ -19,6 +19,7 @@ call plug#begin()
   Plug 'scrooloose/nerdcommenter'
   Plug 'easymotion/vim-easymotion'
   Plug 'editorconfig/editorconfig'
+  Plug 'jiangmiao/auto-pairs'
 call plug#end()
 
 colorscheme jellybeans
